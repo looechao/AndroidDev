@@ -178,9 +178,25 @@ fun main() {
 
 ### 条件语句
 
-if/else 语句
+if/else 语句:
 
-when 语句（类似Switch）
+```kotlin
+fun test() {
+	val trafficLightColor = "Green"
+    
+    if(trafficLightColor == "Red") {
+        println("Stop")
+    }else if(trafficLightColor == "Yellow"){
+        println("Wait")
+    }else if(trafficLightColor == "Green"){
+        println("Go")
+    }else{
+        println("Invalid traffic-light color")
+    }
+}
+```
+
+when 语句（类似switch），使用when语句的原因在于if/else语句的可读性不够，
 
 ```kotlin
 fun main(){
@@ -196,6 +212,39 @@ fun main(){
 ```
 
 ### null性
+
+null 性，表示变量可以为空
+
+对于 nullable 变量的访问一定要使用安全访问运算符和非空断言运算符 `?.` `!!.`，使用普通变量的调用符`.`是不可以的，但是如果 **添加了条件判断，能够保证条件内的 nullable 变量一定非 null** ，那么这时可以使用 `.`
+
+1. 声明和赋值
+
+2. 调用和使用（if/else 可以转换nullable的属性为 non null，安全调用和非空断言调用）
+
+   ```kotlin
+   fun test() {
+       var favoriteActor: String? = "Bruce Lee"
+       
+       val lengthOfName = if(favoriteActor != null){
+       	favoriteActor.length
+       }else{
+           0
+       }
+       println("The number of characters in your favorite actor's name is $lengthOfName.")
+   }
+   ```
+
+3. Elvis 运算符：可以直接设置变量不为null时的默认值
+
+   ```kotlin
+   fun test() {
+       var favoriteActor: String? = "Bruce Lee"
+       val lengthOfName = favoriteActor?.length ?: 0
+       println("The number of characters in your favorite actor's name is $lengthOfName.")
+   }
+   ```
+
+
 
 ### 类和对象
 
